@@ -1,11 +1,10 @@
 import express from "express";
-const route = express.Router();
-import {oorke} from '../controllers/userController.js'
-// oorke();
-// import methods from the userController
-route.get("/oorke" , oorke);
-// here comes the user routes like
-// route.post('/register' , registerUser);
-// .....
+import UserController from "../controllers/UserController.js";
 
-export default route;
+const userRouter = express.Router();
+const controller = new UserController();
+
+userRouter.post("/register", controller.register);
+userRouter.post("/login", controller.login);
+
+export default userRouter;

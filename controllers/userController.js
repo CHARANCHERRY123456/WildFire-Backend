@@ -1,20 +1,26 @@
-// imort the models
-import User from '../models/userModel.js';
+import UserService from "../services/UserService.js";
 
-// write the methods
-export const registerUser = async (req, res) => {
-    const { name, email, password } = req.body;
-  
+export default class UserController {
+  constructor () {
+    this.service = new UserService();
+  }  
+
+  register = async (req, res) => {
     try {
-      const user = new User({ name, email, password });
-      await user.save();
+      const user = await this.service.register(req.body);
       res.status(201).json(user);
     } catch (error) {
-      res.status(500).json({ message: error.message });
+      res.status(400).json({ error: error.message });
     }
-  };
-export const oorke = (req , res)=>{
-  res.send("Hi hellow");
-}
+  }
 
+  login = async (req, res) => {
+    try {
+      const token = await this.service.login(req.body);
+      res.status(200).json({ token });
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  }
+}
 
