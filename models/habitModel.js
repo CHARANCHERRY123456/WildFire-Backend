@@ -4,6 +4,7 @@ const habitSchema = new mongoose.Schema({
         title : {
             type : String,
             required : true,
+            default : "Untitled",
             trim : true
         },
         description : {
@@ -12,10 +13,10 @@ const habitSchema = new mongoose.Schema({
             default : "No Description provided",
             trim : true
         },
-        craetedBy : {
+        createdBy : {
             type : mongoose.Schema.Types.ObjectId,
             ref : "User",
-            required : true,
+            required : false,
         },
         streaks : [{
             userid : {
