@@ -1,9 +1,8 @@
 import mongoose from "mongoose";
 import bcrypt from 'bcryptjs';
-import Habit from './habitModel.js';
-// all the user schema will come here
-const userSchema = new mongoose.Schema({
+import { habitSchema } from './habitModel.js';
 
+const userSchema = new mongoose.Schema({
     username : {type : String , required:true , unique:true},
     email : {
         type : String,
@@ -22,18 +21,19 @@ const userSchema = new mongoose.Schema({
     profilePic: {
          type: String, default: 'https://www.deccanchronicle.com/h-upload/2024/07/24/1826242-alluarjuninpushpa.webp' 
     },
-    habits : [Habit],
+    habits : [habitSchema],
 },
 {timestamps:true}
 )
 
-userSchema.pre('save' , async (next)=>{
+userSchema.pre('save', async function (next) {
     if(!this.isModified('password')) return next();
-    this.password = await bcrypt.hash(this.password,10);
+    const hash = await bcrypt.hash(this.password, 10);
+    this.password = hash;
     next();
 })
 
-userSchema.methods.matchPassword = async (enteredPassword)=>{
+userSchema.methods.matchPassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword , this.password);
 }
 
