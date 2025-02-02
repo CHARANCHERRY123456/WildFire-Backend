@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const habitSchema = new mongoose.Schema({
+export const habitSchema = new mongoose.Schema({
         title : {
             type : String,
             required : true,
