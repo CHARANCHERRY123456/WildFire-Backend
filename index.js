@@ -1,8 +1,15 @@
-import app from './server.js';
-import userRoute from './routes/userRoutes.js';
+import express from 'express';
+import connectDB from './config/db.js';
+import { PORT } from './config/config.js';
+import router from './routes/index.js';
 
-app.use("/api" , userRoute);
+const app = express();
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-app.get("/" , (req , res)=>{
-    res.send("Hi from index");
+app.use("/api", router);
+
+app.listen(PORT, () => {
+    console.log(`server running on port ${PORT}`);
+    connectDB();
 });
