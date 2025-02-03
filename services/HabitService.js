@@ -1,6 +1,10 @@
-import { craeteHabitRepo } from "../repositories/habitRepository.js";
+import HabitRepository from "../repositories/HabitRepository";
 
-export const craeteHabitService = async (userId , habitData)=>{
-    habitData.createdBy = userId;
-    return await craeteHabitRepo(habitData);
-};
+export default class HabitService{
+    constructor(){
+        this.repository = new HabitRepository();
+    }
+    
+    
+
+}
