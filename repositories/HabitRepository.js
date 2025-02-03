@@ -1,14 +1,9 @@
-import Habit from '../models/habitModel.js';
+import CrudRepository from "./CrudRepository.js";
 
-export const craeteHabitRepo = async  (habitData) =>{
-    return await Habit.create(habitData);
+import Habit from "../models/HabitModel.js";
+
+export default class HabitRepository extends CrudRepository{
+    constructor(){
+        super(Habit);
+    }
 }
-
-export const getAllHabitsRepo = async (userid) =>{
-    return await Habit.find({createdBy : userid});
-}
-
-export const getHabitByIdRepo = async (habitId) =>{
-    return await Habit.findById(habitId);
-}
-
