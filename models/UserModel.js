@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from 'bcryptjs';
-import { habitSchema } from './habitModel.js';
+import { habitSchema } from './HabitModel.js';
 
 const userSchema = new mongoose.Schema({
     username : {type : String , required:true , unique:true},
@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
     },
     password : {
         type : String,
-        require : true
+        required : true
     },
     name : {
         type : String , 
