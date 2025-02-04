@@ -60,4 +60,18 @@ export default class UserService {
       throw Error(`Error while fetching user: ${error.message}`);
     }
   };
+
+  addHabitToUser = async(userId ,habitSchema)=>{
+    try{
+      console.log(userId);
+      console.log(habitSchema);
+      const user = await this.repository.addHabitToUser(userId , habitSchema);
+      if(!user){
+        throw Error("Error while adding habit to user");
+      }
+      return user;
+    }catch(error){
+      throw Error("Error while adding habit to user",error.message);
+    }
+  }
 }
