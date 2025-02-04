@@ -22,5 +22,14 @@ export default class UserController {
       res.status(400).json({ error: error.message });
     }
   }
+
+  getUser = async (req, res) => {
+    try {
+      const user = await this.service.getUser(req.params.id);
+      res.status(200).json(user);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  }
 }
 

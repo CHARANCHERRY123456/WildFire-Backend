@@ -48,4 +48,16 @@ export default class UserService {
       throw Error(`Error while logging in: ${error.message}`);
     }
   };
+
+  getUser = async (id) => {
+    try {
+      const user = await this.repository.findById(id);
+      if (!user) {
+        throw Error("User not found");
+      }
+      return user;
+    } catch (error) {
+      throw Error(`Error while fetching user: ${error.message}`);
+    }
+  };
 }
