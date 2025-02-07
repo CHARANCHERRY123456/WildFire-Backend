@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import bcrypt from 'bcryptjs';
-import { habitSchema } from './HabitModel.js';
 
 const userSchema = new mongoose.Schema({
     username : {type : String , required:true , unique:true},
@@ -21,7 +20,6 @@ const userSchema = new mongoose.Schema({
     profilePic: {
          type: String, default: 'https://www.deccanchronicle.com/h-upload/2024/07/24/1826242-alluarjuninpushpa.webp' 
     },
-    habits : [habitSchema],
 },
 {timestamps:true}
 )

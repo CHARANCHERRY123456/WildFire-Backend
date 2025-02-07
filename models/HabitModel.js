@@ -19,18 +19,6 @@ export const habitSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    streaks: [
-      {
-        userid: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
-        },
-        dates: {
-          type: Map,
-          of: Number,
-        },
-      },
-    ],
   },
   {
     timestamps: true,
