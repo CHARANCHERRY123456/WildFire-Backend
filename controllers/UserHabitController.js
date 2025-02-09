@@ -14,4 +14,13 @@ export default class UserHabitController{
             res.status(400).json({error: error.message});
         }
     }
+
+    toggleCompletion = async (req , res) => {
+        try {
+          const habit = await this.service.toggleCompletion(req.body);
+          res.status(201).json(habit);
+        } catch(error) {
+          res.status(400).json({error:error.message});
+        }
+      };
 }

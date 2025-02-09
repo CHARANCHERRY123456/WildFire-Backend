@@ -22,4 +22,26 @@ export default class UserHabitService{
             throw Error(`Error while adding user to habit : ${error.message} `);
         }
     }
+
+    toggleCompletion = async (data) => {
+        try {
+          const date = data.date;
+          const dateObj = new Date(date);
+          if (isNaN(dateObj.getTime())) {
+            throw Error("Invalid date format");
+          }
+          if (dateObj > new Date()) {
+            throw Error("Cannot toggle completion for future dates");
+          }
+          const formattedDate = dateObj.toISOString().split("T")[0];
+          if (!formattedDate) {
+            throw Error("Invalid date format");
+          }
+          data.date = formattedDate;
+          const res = await this.repository.toggleCompletion(data);
+          return res;
+        } catch (error) {
+          throw Error(`Error while toggling completion: ${error.message}`);
+        }
+      };
 }
