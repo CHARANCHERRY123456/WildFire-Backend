@@ -44,4 +44,22 @@ export default class UserHabitService{
           throw Error(`Error while toggling completion: ${error.message}`);
         }
       };
+
+      getAllMembers = async (data) => {
+        try {
+          const members = await this.repository.getAllMembers(data.habitId);
+          return members;
+        } catch (error) {
+          throw Error(error.message);
+        }
+      }
+
+      getAllHabits = async (data) => {
+        try {
+          const habits = await this.repository.getAllHabits(data.userId);
+          return habits;
+        } catch (error) {
+          throw Error(error.message);
+        }
+      }
 }

@@ -35,4 +35,22 @@ export default class UserHabitRepository extends CrudRepository {
       throw Error(`Error while adding user to habit : ${error.message}`);
     }
   }
+
+  getAllHabits = async (userId) => {
+    try {
+      const habits = await this.model.find({ user: userId }, "-user").populate("habit");
+      return habits;
+    } catch (error) {
+      throw Error(`Error while fetching habits: ${error.message}`);
+    }
+  }
+
+  getAllMembers = async (habitId) => {
+    try {
+      const members = await this.model.find({ habit: habitId }, "-habit").populate("user");
+      return members;
+    } catch (error) {
+      throw Error(`Error while fetching members: ${error.message}`);
+    }
+  }
 }

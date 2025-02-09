@@ -16,11 +16,29 @@ export default class UserHabitController{
     }
 
     toggleCompletion = async (req , res) => {
-        try {
-          const habit = await this.service.toggleCompletion(req.body);
-          res.status(201).json(habit);
-        } catch(error) {
-          res.status(400).json({error:error.message});
-        }
-      };
+      try {
+        const habit = await this.service.toggleCompletion(req.body);
+        res.status(201).json(habit);
+      } catch(error) {
+        res.status(400).json({error:error.message});
+      }
+    };
+    
+    getAllMembers = async (req, res) => {
+      try {
+        const members = await this.service.getAllMembers(req.body);
+        res.status(200).json(members);
+      } catch (error) {
+        res.status(400).json({ error: error.message });
+      }
+    };
+
+    getAllHabits = async (req, res) => {
+      try {
+        const habits = await this.service.getAllHabits(req.body);
+        res.status(200).json(habits);
+      } catch (error) {
+        res.status(400).json({ error: error.message });
+      }
+    };
 }
