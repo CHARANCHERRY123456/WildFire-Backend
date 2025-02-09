@@ -22,9 +22,13 @@ export default class UserHabitRepository extends CrudRepository {
   };
 
   addUserTohabit = async(userId , habitId)=>{
-    return await UserHabit.create({
-      user : userId,
-      habit:habitId
-    });
+    try {
+      return await UserHabit.create({
+        user: userId,
+        habit: habitId
+      });
+    } catch (error) {
+      throw Error(`Error while adding user to habit : ${error.message}`);
+    }
   }
 }

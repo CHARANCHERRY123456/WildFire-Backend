@@ -1,6 +1,6 @@
 import UserHabitRepository from "../repositories/UserHabitRepository.js";
 import HabitRepository from "../repositories/HabitRepository.js";
-import UserRepository from "../repositories/UserRepository";
+import UserRepository from "../repositories/UserRepository.js";
 export default class UserHabitService{
     constructor(){
         this.repository = new UserHabitRepository();
@@ -16,8 +16,6 @@ export default class UserHabitService{
             const user = this.userRepository.findById(userId);
             if(!user) throw new Error("User not found");
 
-            const existringEntry = this.repository.findOne({user:userId , habit:habitId});
-            if(existringEntry) return existringEntry;
             return await this.repository.addUserTohabit(userId,habitId);
 
         }catch(error){

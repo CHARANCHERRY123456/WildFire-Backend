@@ -7,7 +7,8 @@ export default class HabitController{
 
     create = async(req , res)=>{
         try{
-            const habit = await this.service.create(req.body);
+            const habitData = {...req.body, createdBy: req.user.id};
+            const habit = await this.service.create(habitData);
             res.status(201).json(habit);
         }catch(error){
             res.status(400).json({error:error.message});

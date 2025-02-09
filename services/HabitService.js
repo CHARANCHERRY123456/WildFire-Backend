@@ -1,5 +1,6 @@
 import HabitRepository from "../repositories/HabitRepository.js";
 import UserHabitRepository from "../repositories/UserHabitRepository.js";
+import mongoose from "mongoose";
 
 export default class HabitService {
   constructor() {
@@ -8,10 +9,17 @@ export default class HabitService {
   }
 
   create = async (data) => {
+    const session = await mongoose.startSession();
+    session.startTransaction();
     try {
-      const Habit = await this.repository.create(data);
+      const Habit = await this.repository.create(data);  // create habit
+      await this.junctionRepository.addUserTohabit(data.createdBy, Habit._id);  // add user to habit
+      await session.commitTransaction();
+      session.endSession();
       return Habit;
     } catch (error) {
+      await session.abortTransaction();
+      session.endSession();
       throw Error(`Error while creating Habit :${error.message} `);
     }
   };
