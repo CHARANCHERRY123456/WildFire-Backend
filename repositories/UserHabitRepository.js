@@ -1,5 +1,5 @@
-import CrudRepository from "./CrudRepository";
-import UserHabit from "../models/UserHabitModel";
+import CrudRepository from "./CrudRepository.js";
+import UserHabit from "../models/UserHabitModel.js";
 
 export default class UserHabitRepository extends CrudRepository {
   constructor() {
@@ -20,4 +20,11 @@ export default class UserHabitRepository extends CrudRepository {
       throw Error(`Error while toggling completion: ${error.message}`);
     }
   };
+
+  addUserTohabit = async(userId , habitId)=>{
+    return await UserHabit.create({
+      user : userId,
+      habit:habitId
+    });
+  }
 }

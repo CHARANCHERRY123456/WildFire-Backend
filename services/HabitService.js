@@ -1,8 +1,10 @@
 import HabitRepository from "../repositories/HabitRepository.js";
+import UserHabitRepository from "../repositories/UserHabitRepository.js";
 
 export default class HabitService {
   constructor() {
     this.repository = new HabitRepository();
+    this.junctionRepository = new UserHabitRepository();
   }
 
   create = async (data) => {
