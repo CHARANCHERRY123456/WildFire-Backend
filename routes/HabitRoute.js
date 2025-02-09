@@ -12,7 +12,7 @@ habitRouter.get('/find',controller.find);
 habitRouter.get('/findById',controller.findById);
 habitRouter.put('/findByIdAndUpdate',controller.findByIdAndUpdate);
 habitRouter.delete('/findByIdAndDelete',controller.findByIdAndDelete);
-
+habitRouter.post('/toggleCompletion',controller.toggleCompletion);
 
 
 

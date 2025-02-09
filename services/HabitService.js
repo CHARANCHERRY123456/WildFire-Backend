@@ -59,4 +59,26 @@ export default class HabitService {
       throw Error(`Error while deliting habit: ${error.message}`);
     }
   };
+
+  toggleCompletion = async (data) => {
+    try {
+      const date = data.date;
+      const dateObj = new Date(date);
+      if (isNaN(dateObj.getTime())) {
+        throw Error("Invalid date format");
+      }
+      if (new Date(date) > new Date()) {
+        throw Error("Cannot toggle completion for future dates");
+      }
+      const formattedDate = new Date(date).toISOString().split("T")[0];
+      if (!formattedDate) {
+        throw Error("Invalid date format");
+      }
+      data.date = formattedDate;
+      const res = await this.junctionRepository.toggleCompletion(data);
+      return res;
+    } catch (error) {
+      throw Error(`Error while toggling completion: ${error.message}`);
+    }
+  };
 }
