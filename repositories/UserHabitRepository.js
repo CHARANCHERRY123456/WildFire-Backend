@@ -13,7 +13,11 @@ export default class UserHabitRepository extends CrudRepository {
       if (!userHabit) {
         throw Error("UserHabit not found");
       }
-      userHabit.dates.set(date, userHabit.dates.get(date) ? 0 : 1);
+      if (userHabit.dates.get(date)) {
+        userHabit.dates.delete(date);
+      } else {
+        userHabit.dates.set(date, 1);
+      }
       await userHabit.save();
       return { message: "Success" };
     } catch (error) {
