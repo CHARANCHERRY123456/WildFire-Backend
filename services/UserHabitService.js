@@ -10,10 +10,10 @@ export default class UserHabitService{
 
     addUserToHabit = async(userId , habitId)=>{
         try{
-            const habit = this.habitRepository.findById(habitId);
+            const habit = await this.habitRepository.findById(habitId);
             if(!habit) throw new Error("Habit Not Found");
 
-            const user = this.userRepository.findById(userId);
+            const user = await this.userRepository.findById(userId);
             if(!user) throw new Error("User not found");
 
             return await this.repository.addUserTohabit(userId,habitId);
