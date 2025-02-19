@@ -35,7 +35,7 @@ export default class UserHabitController{
 
     getAllHabits = async (req, res) => {
       try {
-        const habits = await this.service.getAllHabits(req.body);
+        const habits = await this.service.getAllHabits(req.params.id);
         res.status(200).json(habits);
       } catch (error) {
         res.status(400).json({ error: error.message });
