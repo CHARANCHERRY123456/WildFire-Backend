@@ -6,9 +6,8 @@ export default class UserHabitRepository extends CrudRepository {
     super(UserHabit);
   }
 
-  toggleCompletion = async (data) => {
+  toggleCompletion = async (userId, habitId, date) => {
     try {
-      const { userId, habitId, date } = data;
       const userHabit = await this.model.findOne({ user: userId, habit: habitId });
       if (!userHabit) {
         throw Error("UserHabit not found");

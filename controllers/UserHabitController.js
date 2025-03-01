@@ -17,7 +17,7 @@ export default class UserHabitController{
 
     toggleCompletion = async (req , res) => {
       try {
-        const habit = await this.service.toggleCompletion(req.body);
+        const habit = await this.service.toggleCompletion(req.user.id, req.body.habitId, req.body.date);
         res.status(201).json(habit);
       } catch(error) {
         res.status(400).json({error:error.message});

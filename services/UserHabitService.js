@@ -23,9 +23,8 @@ export default class UserHabitService{
         }
     }
 
-    toggleCompletion = async (data) => {
+    toggleCompletion = async (userId, habitId, date) => {
         try {
-          const date = data.date;
           const dateObj = new Date(date);
           if (isNaN(dateObj.getTime())) {
             throw Error("Invalid date format");
@@ -37,8 +36,7 @@ export default class UserHabitService{
           if (!formattedDate) {
             throw Error("Invalid date format");
           }
-          data.date = formattedDate;
-          const res = await this.repository.toggleCompletion(data);
+          const res = await this.repository.toggleCompletion(userId, habitId, formattedDate);
           return res;
         } catch (error) {
           throw Error(`Error while toggling completion: ${error.message}`);
