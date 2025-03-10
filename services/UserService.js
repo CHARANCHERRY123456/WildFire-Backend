@@ -41,7 +41,7 @@ export default class UserService {
           name: user.name,
         },
         process.env.JWT_SECRET,
-        { expiresIn: "1h" }
+        { expiresIn: "1y" }
       );
       return token;
     } catch (error) {
