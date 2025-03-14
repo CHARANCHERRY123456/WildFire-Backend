@@ -7,6 +7,6 @@ const controller = new UserHabitController();
 
 userHabitRoute.post('/link' , controller.addUserToHabit);
 userHabitRoute.post('/toggle-complete', auth, controller.toggleCompletion);
-userHabitRoute.get('/members', controller.getAllMembers);
+userHabitRoute.get('/:id/members', controller.getAllMembers);
 
 export default userHabitRoute;

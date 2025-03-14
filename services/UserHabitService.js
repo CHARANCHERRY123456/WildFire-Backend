@@ -43,9 +43,9 @@ export default class UserHabitService{
         }
       };
 
-      getAllMembers = async (data) => {
+      getAllMembers = async (habitId) => {
         try {
-          const members = await this.repository.getAllMembers(data.habitId);
+          const members = await this.repository.getAllMembers(habitId);
           return members;
         } catch (error) {
           throw Error(error.message);
