@@ -10,8 +10,8 @@ habitRouter.post('/create' ,auth, controller.create);
 habitRouter.get('/findOne', controller.findOne);
 habitRouter.get('/find',controller.find);
 habitRouter.get('/findById',controller.findById);
-habitRouter.put('/findByIdAndUpdate',controller.findByIdAndUpdate);
-habitRouter.delete('/findByIdAndDelete',controller.findByIdAndDelete);
+habitRouter.put('/edit',controller.findByIdAndUpdate);
+habitRouter.delete('/delete',controller.findByIdAndDelete);
 
 
 
