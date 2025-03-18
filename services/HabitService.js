@@ -62,6 +62,7 @@ export default class HabitService {
   findByIdAndDelete = async (data) => {
     try {
       const Habit = await this.repository.findByIdAndDelete(data.id);
+      if (!Habit) throw Error("No habit found");
       return Habit;
     } catch (error) {
       throw Error(`Error while deliting habit: ${error.message}`);

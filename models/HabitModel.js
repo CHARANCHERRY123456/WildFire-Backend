@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import UserHabit from "./UserHabitModel.js";
 
 export const habitSchema = new mongoose.Schema(
   {
@@ -24,5 +25,11 @@ export const habitSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+habitSchema.pre("findOneAndDelete", async function (next) {
+  await UserHabit.deleteMany({ habit: this.getQuery()._id });
+  next();
+});
+
 const Habit = mongoose.model("Habit", habitSchema);
 export default Habit;

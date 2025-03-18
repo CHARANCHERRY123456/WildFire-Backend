@@ -51,7 +51,7 @@ export default class HabitController{
     findByIdAndDelete = async(req , res)=>{
         try{
             const habit = await this.service.findByIdAndDelete(req.body);
-            res.status(201).json(habit);
+            res.status(200).json(habit);
         }catch(error){
             res.status(400).json({error:error.message});
         }
