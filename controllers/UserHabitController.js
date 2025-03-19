@@ -41,4 +41,14 @@ export default class UserHabitController{
         res.status(400).json({ error: error.message });
       }
     };
+
+    removeUserFromHabit = async (req, res) => {
+      try {
+        const { userId, habitId } = req.body;
+        await this.service.removeUserFromHabit(userId, habitId);
+        res.status(200).json({ message: "User removed from habit" });
+      } catch (error) {
+        res.status(400).json({ error: error.message });
+      }
+    }
 }

@@ -57,4 +57,13 @@ export default class CrudRepository {
       throw Error(`Error while deleting document: ${error.message}`);
     }
   }
+
+  deleteOne = async (query) => {
+    try {
+      const doc = await this.model.deleteOne(query);
+      return doc;
+    } catch (error) {
+      throw Error(`Error while deleting document: ${error.message}`);
+    }
+  }
 }

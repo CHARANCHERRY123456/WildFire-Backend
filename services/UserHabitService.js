@@ -60,4 +60,13 @@ export default class UserHabitService{
           throw Error(error.message);
         }
       }
+
+      removeUserFromHabit = async (userId, habitId) => {
+        try {
+          const res = await this.repository.deleteOne({ user: userId, habit: habitId });
+          return res;
+        } catch (error) {
+          throw Error(`Error while removing user from habit: ${error.message}`);
+        }
+      }
 }
