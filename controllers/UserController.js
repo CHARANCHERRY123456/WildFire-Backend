@@ -31,5 +31,14 @@ export default class UserController {
       res.status(400).json({ error: error.message });
     }
   }
+
+  editUser = async (req, res) => {
+    try {
+      const user = await this.service.editUser(req.params.id, req.body, req.file);
+      res.status(200).json(user);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  }
 }
 

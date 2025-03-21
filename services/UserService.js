@@ -62,7 +62,7 @@ export default class UserService {
   };
 
   addHabitToUser = async(userId ,habitSchema)=>{
-    try{
+    try {
       console.log(userId);
       console.log(habitSchema);
       const user = await this.repository.addHabitToUser(userId , habitSchema);
@@ -70,8 +70,20 @@ export default class UserService {
         throw Error("Error while adding habit to user");
       }
       return user;
-    }catch(error){
+    } catch(error){
       throw Error("Error while adding habit to user",error.message);
     }
   }
+
+  editUser = async (id, data, file) => {
+    try {
+      if (file) {
+        data.profilePic = file.path;
+      }
+      const user = await this.repository.findByIdAndUpdate(id, data);
+      return user;
+    } catch (error) {
+      throw Error(`Error while updating user: ${error.message}`);
+    }
+  };
 }
