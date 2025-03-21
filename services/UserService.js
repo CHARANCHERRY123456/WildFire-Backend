@@ -77,6 +77,10 @@ export default class UserService {
 
   editUser = async (id, data, file) => {
     try {
+      const userExists = await this.repository.findById(id);
+      if (!userExists) {
+        throw Error("User not found");
+      }
       if (file) {
         data.profilePic = file.path;
       }
