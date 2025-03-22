@@ -42,7 +42,7 @@ export default class HabitController{
     findByIdAndUpdate = async(req , res)=>{
         try{
             const habit = await this.service.findByIdAndUpdate(req.params.id, req.body);
-            res.status(201).json(habit);
+            res.status(200).json(habit);
         }catch(error){
             res.status(400).json({error:error.message});
         }
