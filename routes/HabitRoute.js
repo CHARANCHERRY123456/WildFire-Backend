@@ -9,9 +9,9 @@ const controller = new HabitController();
 habitRouter.post('/create' ,auth, controller.create);
 habitRouter.get('/findOne', controller.findOne);
 habitRouter.get('/find',controller.find);
-habitRouter.get('/findById',controller.findById);
-habitRouter.put('/edit',controller.findByIdAndUpdate);
-habitRouter.delete('/delete',controller.findByIdAndDelete);
+habitRouter.get('/:id',controller.findById);
+habitRouter.put('/:id',controller.findByIdAndUpdate);
+habitRouter.delete('/:id',controller.findByIdAndDelete);
 
 
 

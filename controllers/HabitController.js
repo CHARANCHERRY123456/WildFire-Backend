@@ -32,7 +32,7 @@ export default class HabitController{
     }
     findById = async(req , res)=>{
         try{
-            const habit = await this.service.findById(req.body);
+            const habit = await this.service.findById(req.params.id);
             res.status(201).json(habit);
         }catch(error){
             res.status(400).json({error:error.message});
@@ -41,7 +41,7 @@ export default class HabitController{
 
     findByIdAndUpdate = async(req , res)=>{
         try{
-            const habit = await this.service.findByIdAndUpdate(req.body);
+            const habit = await this.service.findByIdAndUpdate(req.params.id, req.body);
             res.status(201).json(habit);
         }catch(error){
             res.status(400).json({error:error.message});
@@ -50,7 +50,7 @@ export default class HabitController{
 
     findByIdAndDelete = async(req , res)=>{
         try{
-            const habit = await this.service.findByIdAndDelete(req.body);
+            const habit = await this.service.findByIdAndDelete(req.params.id);
             res.status(200).json(habit);
         }catch(error){
             res.status(400).json({error:error.message});

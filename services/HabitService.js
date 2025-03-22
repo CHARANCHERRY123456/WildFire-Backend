@@ -40,9 +40,9 @@ export default class HabitService {
       throw Error(`Error while finding habit: ${error.message}`);
     }
   };
-  findById = async (data) => {
+  findById = async (id) => {
     try {
-      const Habit = await this.repository.findById(data);
+      const Habit = await this.repository.findById(id);
       return Habit;
     } catch (error) {
       throw Error(`Error while finding habit: ${error.message}`);
@@ -50,18 +50,18 @@ export default class HabitService {
   };
 
   //   Update routes
-  findByIdAndUpdate = async (data) => {
+  findByIdAndUpdate = async (id, data) => {
     try {
-      const Habit = await this.repository.findByIdAndUpdate(data.id, data);
+      const Habit = await this.repository.findByIdAndUpdate(id, data);
       return Habit;
     } catch (error) {
       throw Error(`Error while finding and updating habit: ${error.message}`);
     }
   };
 
-  findByIdAndDelete = async (data) => {
+  findByIdAndDelete = async (id) => {
     try {
-      const Habit = await this.repository.findByIdAndDelete(data.id);
+      const Habit = await this.repository.findByIdAndDelete(id);
       if (!Habit) throw Error("No habit found");
       return Habit;
     } catch (error) {
