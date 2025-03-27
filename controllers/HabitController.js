@@ -33,7 +33,7 @@ export default class HabitController{
     findById = async(req , res)=>{
         try{
             const habit = await this.service.findById(req.params.id);
-            res.status(201).json(habit);
+            res.status(200).json(habit);
         }catch(error){
             res.status(400).json({error:error.message});
         }

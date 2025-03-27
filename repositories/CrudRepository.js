@@ -22,9 +22,9 @@ export default class CrudRepository {
     }
   }
 
-  findById = async (id) => {
+  findById = async (id, populateFields=[]) => {
     try {
-      const doc = await this.model.findById(id);
+      const doc = await this.model.findById(id).populate(...populateFields);
       return doc;
     } catch (error) {
       throw Error(`Error while finding document: ${error.message}`);

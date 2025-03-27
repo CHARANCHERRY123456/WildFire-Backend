@@ -42,7 +42,8 @@ export default class HabitService {
   };
   findById = async (id) => {
     try {
-      const Habit = await this.repository.findById(id);
+      const Habit = await this.repository.findById(id, ["createdBy", "name"]);
+      if (!Habit) throw Error("No habit found");
       return Habit;
     } catch (error) {
       throw Error(`Error while finding habit: ${error.message}`);
