@@ -40,5 +40,23 @@ export default class UserController {
       res.status(400).json({ error: error.message });
     }
   }
+
+  forgotPassword = async (req, res) => {
+    try {
+      const response = await this.service.forgotPassword(req.body.email);
+      res.json(response);
+    } catch (err) {
+      res.status(err.status || 500).json({ message: err.message || 'Server error' });
+    }
+  };
+
+  resetPassword = async (req, res) => {
+    try {
+      const response = await this.service.resetPassword(req.params.token, req.body.newPassword);
+      res.json(response);
+    } catch (err) {
+      res.status(err.status || 500).json({ message: err.message || 'Server error' });
+    }
+  };
 }
 

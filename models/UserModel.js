@@ -20,6 +20,14 @@ const userSchema = new mongoose.Schema({
     profilePic: {
          type: String, default: 'https://www.deccanchronicle.com/h-upload/2024/07/24/1826242-alluarjuninpushpa.webp' 
     },
+    resetPasswordToken: {
+        type: String,
+        default: null
+    },
+    resetPasswordExpires: {
+        type: Date,
+        default: null
+    },
 },
 {timestamps:true}
 )
