@@ -58,5 +58,13 @@ export default class UserController {
       res.status(err.status || 500).json({ message: err.message || 'Server error' });
     }
   };
-}
 
+  verifyToken = async (req, res) => {
+    try {
+      const response = await this.service.verifyToken(req.headers.authorization?.split(' ')[1]);
+      res.json(response);
+    } catch (err) {
+      res.status(400).json({ message: err.message });
+    }
+  }
+}

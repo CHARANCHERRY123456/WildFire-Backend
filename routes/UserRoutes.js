@@ -14,5 +14,6 @@ userRouter.get("/:id/habits", userHabitController.getAllHabits);
 userRouter.put("/:id", upload.single("image"), userController.editUser);
 userRouter.post('/forgot-password', userController.forgotPassword);
 userRouter.post('/reset-password/:token', userController.resetPassword);
+userRouter.get('/verify-token/', userController.verifyToken);
 
 export default userRouter;

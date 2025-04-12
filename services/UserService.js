@@ -2,6 +2,8 @@ import UserRepository from "../repositories/UserRepository.js";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import transporter from "../config/emailTransporter.js";
+import jwt from "jsonwebtoken";
+import { JWT_SECRET } from "../config/config.js";
 
 export default class UserService {
   constructor() {
@@ -130,4 +132,19 @@ export default class UserService {
     await user.save();
     return { message: 'Password has been reset successfully' };
   };
+
+  verifyToken = async (token) => {
+    try {
+      if (!token) {
+        throw Error("Token not provided");
+      }
+      const decoded = jwt.verify(token, JWT_SECRET);
+      if (!decoded) {
+        throw Error("Invalid token");
+      }
+      return decoded;
+    } catch (error) {
+      throw Error(`Error while verifying token: ${error.message}`);
+    }
+  }
 }
