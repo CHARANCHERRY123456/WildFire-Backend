@@ -2,7 +2,6 @@ import UserRepository from "../repositories/UserRepository.js";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import transporter from "../config/emailTransporter.js";
-import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "../config/config.js";
 
 export default class UserService {
