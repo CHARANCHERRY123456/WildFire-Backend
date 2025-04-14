@@ -20,6 +20,10 @@ export const habitSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
+    emoji: {
+      type: String,
+      required: true,
+    }
   },
   {
     timestamps: true,
