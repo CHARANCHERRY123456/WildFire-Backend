@@ -1,6 +1,7 @@
 import UserHabitRepository from "../repositories/UserHabitRepository.js";
 import HabitRepository from "../repositories/HabitRepository.js";
 import UserRepository from "../repositories/UserRepository.js";
+import { DateTime } from "luxon";
 export default class UserHabitService{
     constructor(){
         this.repository = new UserHabitRepository();
@@ -29,9 +30,13 @@ export default class UserHabitService{
           if (isNaN(dateObj.getTime())) {
             throw Error("Invalid date format");
           }
-          if (dateObj > new Date()) {
-            throw Error("Cannot toggle completion for future dates");
+          
+          const istNow = new Date(DateTime.now().setZone("Asia/Kolkata").toFormat("yyyy-MM-dd"));
+
+          if (dateObj > istNow) {
+            throw Error("Date cannot be in the future");
           }
+
           const formattedDate = dateObj.toISOString().split("T")[0];
           if (!formattedDate) {
             throw Error("Invalid date format");
